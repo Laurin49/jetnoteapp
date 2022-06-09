@@ -8,8 +8,13 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import info.diwe.jetnoteapp.data.NotesDataSource
+import info.diwe.jetnoteapp.model.Note
+import info.diwe.jetnoteapp.screen.NoteScreen
 import info.diwe.jetnoteapp.ui.theme.JetNoteAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -22,22 +27,26 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Android")
+                    val notes = remember {
+                        mutableStateListOf<Note>()
+                    }
+                    NoteScreen(
+                        notes = notes,
+                        onAddNote = { notes.add(it) },
+                        onRemoveNote = { notes.remove(it) })
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     JetNoteAppTheme {
-        Greeting("Android")
     }
 }
+
+
+
+
