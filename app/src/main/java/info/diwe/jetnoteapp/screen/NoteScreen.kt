@@ -119,7 +119,8 @@ fun NoteRow(
         .clip(RoundedCornerShape(topEnd = 33.dp, bottomStart = 33.dp))
         .fillMaxWidth(),
         color = Color(0xFFDFE6EB),
-        elevation = 6.dp) {
+        elevation = 6.dp
+    ) {
         Column(modifier
             .clickable { onNoteClicked(note) }
             .padding(horizontal = 14.dp, vertical = 6.dp),
@@ -130,8 +131,6 @@ fun NoteRow(
                 text = note.entryDate.format(DateTimeFormatter.ofPattern("EEE, d MMM")),
                 style = MaterialTheme.typography.caption
             )
-//            Text(text = formatDate(note.entryDate.time),
-//                style = MaterialTheme.typography.caption)
         }
     }
 }
