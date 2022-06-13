@@ -26,6 +26,7 @@ import info.diwe.jetnoteapp.components.NoteButton
 import info.diwe.jetnoteapp.components.NoteInputText
 import info.diwe.jetnoteapp.data.NotesDataSource
 import info.diwe.jetnoteapp.model.Note
+import info.diwe.jetnoteapp.util.formatDate
 import java.time.format.DateTimeFormatter
 
 @OptIn(ExperimentalComposeUiApi::class)
@@ -127,10 +128,8 @@ fun NoteRow(
             horizontalAlignment = Alignment.Start) {
             Text(text = note.title, style = MaterialTheme.typography.subtitle2)
             Text(text = note.description, style = MaterialTheme.typography.subtitle1)
-            Text(
-                text = note.entryDate.format(DateTimeFormatter.ofPattern("EEE, d MMM")),
-                style = MaterialTheme.typography.caption
-            )
+            Text(text = formatDate(note.entryDate.time), style = MaterialTheme.typography.caption)
+
         }
     }
 }
